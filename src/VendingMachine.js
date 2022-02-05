@@ -58,7 +58,7 @@ class VendingMachine extends Component {
       return "61px";
     }
   };
-  moneyPaid = () => {
+  enterMoney = () => {
     if (this.state.currentSnack?.Name) {
       //check money type(0.1$,0.2$,0.5$,1$,20$,50$), if false change display message then call clickKeypadButton after a delay, if true cont.
       const acceptedMoney = [0.1, 0.2, 0.5, 1, 20, 50];
@@ -245,7 +245,7 @@ class VendingMachine extends Component {
             value={this.state.money}
             onChange={(e) => this.setState({ money: e.target.value })}
           ></input>
-          <button onClick={this.moneyPaid}>
+          <button onClick={this.enterMoney}>
             <i className="fas fa-money-check-alt"></i>
           </button>
         </div>
