@@ -1,0 +1,117 @@
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.moneyInput{
+  
+}
+.backKey{
+  border: none;
+  background: none;
+  color:white;
+  font-size: 25px;
+}
+.snacksSlots {
+  height: 473px;
+  width: 252px;
+  display:flex;
+  color: white;
+  background-image: url("empty-vending.jpg");
+}
+.left{
+  width:28px
+}
+.middle {
+  display: flex;
+  flex-direction: column;
+  width:206px;
+}
+.Numbers{
+  display: flex;
+
+}
+.snacks{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top:10px
+}
+.snackItem {
+  display: flex;
+  width: 41px;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.snackImage {
+  height: 40px;
+  width: 40px;
+}
+.right{
+    width:18px;
+}
+.ioContainer {
+  width: 120px;
+
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  background: rgb(255, 18, 29);
+}
+
+.spacer {
+  width: 10px;
+  border-bottom: 2px solid rgb(255, 18, 29);
+}
+.display {
+  margin: 5px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  height: 140px;
+  background: black;
+  color: wheat;
+  font-size: 11px;
+}
+.moneySlots {
+  margin: 5px;
+  color: white;
+}
+.keypad {
+  margin: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.keypadButton {
+  font-size: 10px;
+  width: 22px;
+  padding: 1px;
+  height: 25px;
+  border: 2px black solid;
+  border-radius: 15px;
+  background: none;
+  color: white;
+}
+.keypadButton:hover {
+  background: white;
+  color: rgb(255, 18, 29);
+  transition: all 0.5s ease;
+}
+
+.moneySlot,
+.cardSlot {
+  margin: 5px;
+  background: black;
+  width: 30px;
+  height: 4px;
+}
+.coinSlot {
+  margin: 5px;
+  background: black;
+  width: 10px;
+  height: 4px;
+}
+
+.container {
+  display: flex;
+  margin: 8px;
+}
