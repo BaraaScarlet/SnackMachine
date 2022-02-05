@@ -98,10 +98,6 @@ class VendingMachine extends Component {
               self.setState({ displayMsg: "Please choose a snack to buy!" });
             }, 7000);
           }
-          //check if paidMoney>=snack price, if false do nothing, if true, display good nigger then check for change
-          //check for change, if paidMoney>snack price, we display paidMoney-snack price as the change, then we reset
-          //this.setState({ paidMoney: 0, displayMsg:"Please choose a snack to buy!" });
-          //reduce amount in snacks array
         });
       }
     } else {
@@ -109,6 +105,26 @@ class VendingMachine extends Component {
         displayMsg: "Please enter a snack you would like to buy first!",
       });
     }
+  };
+  back = () => {
+    let { currentSnack, paidMoney } = this.state;
+    if (currentSnack?.Name && paidMoney > 0) {
+      this.setState({
+        displayMsg:
+          "Please take back your money!\nyou inserted " + paidMoney + "$",
+      });
+      let self=this
+      setTimeout(function () {
+        self.setState({
+          displayMsg: "Please choose a snack to buy!",
+          paidMoney: 0,
+        });
+      }, 7000);
+    } else
+      this.setState({
+        displayMsg: "Please choose a snack to buy!",
+        paidMoney: 0,
+      });
   };
   clickKeypadButton = (snack, noCheck) => {
     if (!noCheck && this.state.paidMoney > 0) {
@@ -237,7 +253,7 @@ class VendingMachine extends Component {
               })}
             </div>
             <div className="back">
-              <button className="backKey">
+              <button className="backKey" onClick={this.back}>
                 <i className="fas fa-arrow-left"></i>
               </button>
             </div>
