@@ -71,6 +71,7 @@
   background: black;
   color: wheat;
   font-size: 11px;
+  white-space: pre-wrap;
 }
 .moneySlots {
   margin: 5px;

@@ -7,35 +7,34 @@ class VendingMachine extends Component {
       paidMoney: 0,
       currentSnack: {},
       displayMsg: "Please choose a snack to buy!",
+      snacks: [
+        { Name: "A1", Price: 5, Amount: 1, imageSrc: "images/snack1.png" },
+        { Name: "A2", Price: 2, Amount: 5, imageSrc: "images/snack2.png" },
+        { Name: "A3", Price: 3, Amount: 5, imageSrc: "images/snack3.png" },
+        { Name: "A4", Price: 2, Amount: 2, imageSrc: "images/snack4.png" },
+        { Name: "A5", Price: 10, Amount: 5, imageSrc: "images/snack5.png" },
+        { Name: "B1", Price: 20, Amount: 5, imageSrc: "images/snack6.png" },
+        { Name: "B2", Price: 15, Amount: 5, imageSrc: "images/snack7.png" },
+        { Name: "B3", Price: 13.5, Amount: 5, imageSrc: "images/snack8.png" },
+        { Name: "B4", Price: 11, Amount: 5, imageSrc: "images/snack9.png" },
+        { Name: "B5", Price: 3.2, Amount: 3, imageSrc: "images/snack10.png" },
+        { Name: "C1", Price: 1, Amount: 5, imageSrc: "images/snack11.png" },
+        { Name: "C2", Price: 3, Amount: 5, imageSrc: "images/snack12.png" },
+        { Name: "C3", Price: 6, Amount: 4, imageSrc: "images/snack13.png" },
+        { Name: "C4", Price: 10, Amount: 5, imageSrc: "images/snack14.png" },
+        { Name: "C5", Price: 2, Amount: 5, imageSrc: "images/snack15.png" },
+        { Name: "D1", Price: 16, Amount: 5, imageSrc: "images/snack16.png" },
+        { Name: "D2", Price: 6, Amount: 5, imageSrc: "images/snack17.png" },
+        { Name: "D3", Price: 6.5, Amount: 5, imageSrc: "images/snack18.png" },
+        { Name: "D4", Price: 4, Amount: 5, imageSrc: "images/snack19.png" },
+        { Name: "D5", Price: 8, Amount: 5, imageSrc: "images/snack20.png" },
+        { Name: "E1", Price: 5.6, Amount: 5, imageSrc: "images/snack21.png" },
+        { Name: "E2", Price: 6.9, Amount: 5, imageSrc: "images/snack22.png" },
+        { Name: "E3", Price: 4.2, Amount: 5, imageSrc: "images/snack23.png" },
+        { Name: "E4", Price: 1, Amount: 5, imageSrc: "images/snack24.png" },
+        { Name: "E5", Price: 0.5, Amount: 5, imageSrc: "images/snack5.png" },
+      ],
     };
-
-    this.snacks = [
-      { Name: "A1", Price: 5, Amount: 1, imageSrc: "images/snack1.png" },
-      { Name: "A2", Price: 2, Amount: 5, imageSrc: "images/snack2.png" },
-      { Name: "A3", Price: 3, Amount: 5, imageSrc: "images/snack3.png" },
-      { Name: "A4", Price: 2, Amount: 2, imageSrc: "images/snack4.png" },
-      { Name: "A5", Price: 10, Amount: 5, imageSrc: "images/snack5.png" },
-      { Name: "B1", Price: 20, Amount: 5, imageSrc: "images/snack6.png" },
-      { Name: "B2", Price: 15, Amount: 5, imageSrc: "images/snack7.png" },
-      { Name: "B3", Price: 13.5, Amount: 5, imageSrc: "images/snack8.png" },
-      { Name: "B4", Price: 11, Amount: 5, imageSrc: "images/snack9.png" },
-      { Name: "B5", Price: 3.2, Amount: 3, imageSrc: "images/snack10.png" },
-      { Name: "C1", Price: 1, Amount: 5, imageSrc: "images/snack11.png" },
-      { Name: "C2", Price: 3, Amount: 5, imageSrc: "images/snack12.png" },
-      { Name: "C3", Price: 6, Amount: 4, imageSrc: "images/snack13.png" },
-      { Name: "C4", Price: 10, Amount: 5, imageSrc: "images/snack14.png" },
-      { Name: "C5", Price: 2, Amount: 5, imageSrc: "images/snack15.png" },
-      { Name: "D1", Price: 16, Amount: 5, imageSrc: "images/snack16.png" },
-      { Name: "D2", Price: 6, Amount: 5, imageSrc: "images/snack17.png" },
-      { Name: "D3", Price: 6.5, Amount: 5, imageSrc: "images/snack18.png" },
-      { Name: "D4", Price: 4, Amount: 5, imageSrc: "images/snack19.png" },
-      { Name: "D5", Price: 8, Amount: 5, imageSrc: "images/snack20.png" },
-      { Name: "E1", Price: 5.6, Amount: 5, imageSrc: "images/snack21.png" },
-      { Name: "E2", Price: 6.9, Amount: 5, imageSrc: "images/snack22.png" },
-      { Name: "E3", Price: 4.2, Amount: 5, imageSrc: "images/snack23.png" },
-      { Name: "E4", Price: 1, Amount: 5, imageSrc: "images/snack24.png" },
-      { Name: "E5", Price: 0.5, Amount: 5, imageSrc: "images/snack5.png" },
-    ];
   }
 
   /*
@@ -62,42 +61,49 @@ class VendingMachine extends Component {
   moneyPaid = () => {
     if (this.state.currentSnack?.Name) {
       //check money type(0.1$,0.2$,0.5$,1$,20$,50$), if false change display message then call clickKeypadButton after a delay, if true cont.
-      let acceptedMoney = [0.1, 0.2, 0.5, 1, 20, 50];
+      const acceptedMoney = [0.1, 0.2, 0.5, 1, 20, 50];
 
-      acceptedMoney.forEach((e) => {
-        
-        let paid = parseFloat(this.state.money);
-        console.log(paid)
-        if (paid !== e) {
-          this.setState(
-            { displayMsg: "Please Enter Valid Currency" },
-            this.clickKeypadButton(this.state.currentSnack, true)
-          );
-        } else {
-          var newMoney = parseFloat(this.state.money);
-          var oldMoney = this.state.paidMoney;
-          this.setState({ paidMoney: oldMoney + newMoney, money: 0 }, () => {
+      let paid = parseFloat(this.state.money);
+      let moneyChecked = acceptedMoney.some((am) => am === paid);
+      if (!moneyChecked) {
+        let amounts = acceptedMoney.join("$, ");
+        let self = this;
+        this.setState({
+          displayMsg: "Please enter a valid amount(" + amounts + ")",
+        });
+        setTimeout(function () {
+          self.clickKeypadButton(self.state.currentSnack, true);
+        }, 5000);
+      } else {
+        var newMoney = parseFloat(this.state.money);
+        var oldMoney = this.state.paidMoney;
+        this.setState({ paidMoney: oldMoney + newMoney, money: 0 }, () => {
           this.clickKeypadButton(this.state.currentSnack, true);
-          if(parseFloat(this.state.paidMoney)>=parseFloat(this.state.currentSnack.Price))
-          {
-            let change = parseFloat(this.state.paidMoney)-parseFloat(this.state.currentSnack.Price)
-            this.setState({displayMsg:"Have a nice day!,\nYour Change is "+change+"$"})
-            this.snacks.forEach((e)=>{
-              if(e.Name === this.state.currentSnack.Name)
-              {
-                e.Amount=e.Amount-1
-                console.log(e.Amount)
+          if (this.state.paidMoney >= this.state.currentSnack.Price) {
+            let change = this.state.paidMoney - this.state.currentSnack.Price;
+            let { snacks } = this.state;
+            snacks.forEach((e) => {
+              if (e.Name === this.state.currentSnack.Name) {
+                e.Amount = e.Amount - 1;
               }
-            })
-            
+            });
+            this.setState({
+              displayMsg: "Have a nice day!\n\nYour Change is " + change + "$",
+              paidMoney: 0,
+              snacks: snacks,
+            });
+
+            let self = this;
+            setTimeout(function () {
+              self.setState({ displayMsg: "Please choose a snack to buy!" });
+            }, 7000);
           }
-            //check if paidMoney>=snack price, if false do nothing, if true, display good nigger then check for change
-            //check for change, if paidMoney>snack price, we display paidMoney-snack price as the change, then we reset
-            //this.setState({ paidMoney: 0, displayMsg:"Please choose a snack to buy!" });
-            //reduce amount in snacks array
-          });
-        }
-      });
+          //check if paidMoney>=snack price, if false do nothing, if true, display good nigger then check for change
+          //check for change, if paidMoney>snack price, we display paidMoney-snack price as the change, then we reset
+          //this.setState({ paidMoney: 0, displayMsg:"Please choose a snack to buy!" });
+          //reduce amount in snacks array
+        });
+      }
     } else {
       this.setState({
         displayMsg: "Please enter a snack you would like to buy first!",
@@ -122,11 +128,11 @@ class VendingMachine extends Component {
           snack.Name +
           " is available and it's price is " +
           snack.Price +
-          "\npaid money so far: " +
+          "\n\npaid money: " +
           this.state.paidMoney,
       });
     } else
-      this.setState({ displayMsg: "Snack not available, choose another!" });
+      this.setState({ displayMsg: "This snack is not available! Please choose another one." });
   };
   render() {
     const numbers = [1, 2, 3, 4, 5];
@@ -173,7 +179,7 @@ class VendingMachine extends Component {
               })}
             </div>
             <div className="snacks">
-              {this.snacks.map((e, index) => {
+              {this.state.snacks.map((e, index) => {
                 return (
                   <div
                     key={index}
@@ -195,7 +201,7 @@ class VendingMachine extends Component {
         </div>
         <div className="spacer"></div>
         <div className="ioContainer">
-          <div className="display">{this.state.displayMsg}</div>
+          <pre className="display">{this.state.displayMsg}</pre>
 
           <div className="moneySlots">
             <div className="container">
@@ -215,7 +221,7 @@ class VendingMachine extends Component {
           </div>
 
           <div className="keypad">
-            {this.snacks.map((s, index) => {
+            {this.state.snacks.map((s, index) => {
               return (
                 <button
                   className="keypadButton"
