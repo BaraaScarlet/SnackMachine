@@ -2,10 +2,17 @@
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  flex-direction: column;
+}
+.vendingMachine{
+  display: flex;
+  justify-content: center;
 }
 
 .moneyInput{
-  
+  margin-top:10px;
+  display: flex;
+  justify-content: center;
 }
 .backKey{
   border: none;

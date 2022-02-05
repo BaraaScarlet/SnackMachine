@@ -132,114 +132,118 @@ class VendingMachine extends Component {
           this.state.paidMoney,
       });
     } else
-      this.setState({ displayMsg: "This snack is not available! Please choose another one." });
+      this.setState({
+        displayMsg: "This snack is not available! Please choose another one.",
+      });
   };
   render() {
     const numbers = [1, 2, 3, 4, 5];
     const letters = ["A", "B", "C", "D", "E"];
     return (
       <div className="mainContainer">
-        <div className="snacksSlots">
-          <div className="left">
-            <div style={{ height: "27px" }}></div>
-            <div className="Letters">
-              {letters.map((l, index) => {
+        <div className="vendingMachine">
+          <div className="snacksSlots">
+            <div className="left">
+              <div style={{ height: "27px" }}></div>
+              <div className="Letters">
+                {letters.map((l, index) => {
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        height: this.getHeight(5 * index),
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {l}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="middle">
+              <div className="Numbers">
+                {numbers.map((n, index) => {
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        width: "41px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {n}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="snacks">
+                {this.state.snacks.map((e, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="snackItem"
+                      style={{ height: this.getHeight(index) }}
+                    >
+                      <img
+                        className="snackImage"
+                        src={e.imageSrc}
+                        alt="img placeholder"
+                      ></img>
+                      {e.Price}$
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="right"></div>
+          </div>
+          <div className="spacer"></div>
+          <div className="ioContainer">
+            <pre className="display">{this.state.displayMsg}</pre>
+
+            <div className="moneySlots">
+              <div className="container">
+                <i className="fas fa-coins"></i>
+                <div className="coinSlot"></div>
+              </div>
+
+              <div className="container">
+                <i className="fab fa-cc-visa"></i>
+                <div className="cardSlot"></div>
+              </div>
+
+              <div className="container">
+                <i className="fas fa-money-bill-wave"></i>
+                <div className="moneySlot"></div>
+              </div>
+            </div>
+
+            <div className="keypad">
+              {this.state.snacks.map((s, index) => {
                 return (
-                  <div
+                  <button
+                    className="keypadButton"
                     key={index}
-                    style={{
-                      height: this.getHeight(5 * index),
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
+                    onClick={() => this.clickKeypadButton(s)}
                   >
-                    {l}
-                  </div>
+                    {s.Name}
+                  </button>
                 );
               })}
+            </div>
+            <div className="back">
+              <button className="backKey">
+                <i className="fas fa-arrow-left"></i>
+              </button>
             </div>
           </div>
-          <div className="middle">
-            <div className="Numbers">
-              {numbers.map((n, index) => {
-                return (
-                  <div
-                    key={index}
-                    style={{
-                      width: "41px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {n}
-                  </div>
-                );
-              })}
-            </div>
-            <div className="snacks">
-              {this.state.snacks.map((e, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="snackItem"
-                    style={{ height: this.getHeight(index) }}
-                  >
-                    <img
-                      className="snackImage"
-                      src={e.imageSrc}
-                      alt="img placeholder"
-                    ></img>
-                    {e.Price}$
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <div className="right"></div>
         </div>
-        <div className="spacer"></div>
-        <div className="ioContainer">
-          <pre className="display">{this.state.displayMsg}</pre>
-
-          <div className="moneySlots">
-            <div className="container">
-              <i className="fas fa-coins"></i>
-              <div className="coinSlot"></div>
-            </div>
-
-            <div className="container">
-              <i className="fab fa-cc-visa"></i>
-              <div className="cardSlot"></div>
-            </div>
-
-            <div className="container">
-              <i className="fas fa-money-bill-wave"></i>
-              <div className="moneySlot"></div>
-            </div>
-          </div>
-
-          <div className="keypad">
-            {this.state.snacks.map((s, index) => {
-              return (
-                <button
-                  className="keypadButton"
-                  key={index}
-                  onClick={() => this.clickKeypadButton(s)}
-                >
-                  {s.Name}
-                </button>
-              );
-            })}
-          </div>
-          <div className="back">
-            <button className="backKey">
-              <i className="fas fa-arrow-left"></i>
-            </button>
-          </div>
-        </div>
-        <div className="MoneyInput">
+        <div className="moneyInput">
           <input
             placeholder="Enter your money"
             value={this.state.money}
